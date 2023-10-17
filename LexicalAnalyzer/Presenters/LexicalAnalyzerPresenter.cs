@@ -25,7 +25,7 @@ public class LexicalAnalyzerPresenter
         _view.NewEvent += NewAnalysis;
         _view.OpenFileEvent += OpenFileToAnalyzer;
         _view.AnalyzerEvent += AnalyzeCode;
-        //_view.SaveEvent += SaveAnalysis;
+        _view.SaveEvent += SaveAnalysis;
         _view.CancelEvent += CancelAnalysis;
 
         // Enlazar la fuente de datos
@@ -35,7 +35,28 @@ public class LexicalAnalyzerPresenter
 
     private void SaveAnalysis(object? sender, EventArgs e)
     {
-        
+        var saveFile = new SaveFileDialog()
+        {
+            Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*",
+            Title = "Guardar archivo"
+        };
+        if (saveFile.ShowDialog() == DialogResult.OK)
+        {
+            var path = saveFile.FileName;
+            // Utiliza StreamWriter para escribir datos en el archivo
+            using var sw = new StreamWriter(path);
+            // Aquí puedes escribir los datos que deseas guardar en el archivo
+            foreach (var item in _lexerBindingSource)
+            {
+                sw.WriteLine(item);
+            }
+
+            MessageBox.Show("Se guardo el archivo", "Archivo guardado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        else
+        {
+            MessageBox.Show("Problemas con obtener la ruta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 
     private void CancelAnalysis(object? sender, EventArgs e)

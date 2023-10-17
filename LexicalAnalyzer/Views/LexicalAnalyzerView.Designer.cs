@@ -159,7 +159,6 @@ partial class LexicalAnalyzerView
         btnSave.Text = "Guardar";
         btnSave.TextImageRelation = TextImageRelation.ImageAboveText;
         btnSave.UseVisualStyleBackColor = true;
-        btnSave.Click += btnSaveImage_Click;
         // 
         // btnOpenFile
         // 

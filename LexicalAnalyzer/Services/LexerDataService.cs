@@ -323,7 +323,7 @@ public class LexerDataService : ILexerDataService
     }
     
     // Este es el algoritmo principal y que maneja todo
-    // Aqui se crea el arbol de todas las palabras
+    // Aqui se crea el arbol de todas las palabras (Tokens
     // Analizar y mejorar el codigo
     private static List<string> GetTokens(string code)
     {
